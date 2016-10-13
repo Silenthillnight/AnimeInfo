@@ -1,0 +1,50 @@
+<resources>
+   <string name="app_name">AnimeInfo</string>
+
+   <!-- Seasonal show ids -->
+   <string-array name="winter_2016">
+      <item>17676</item>
+      <item>17123</item>
+      <item>16555</item>
+      <item>17920</item>
+      <item>17796</item>
+      <item>17777</item>
+      <item>17896</item>
+      <item>17064</item>
+      <item>17285</item>
+      <item>17732</item>
+      <item>17743</item>
+      <item>17795</item>
+      <item>17531</item>
+      <item>17670</item>
+      <item>17778</item>
+      <item>17790</item>
+      <item>16670</item>
+      <item>17834</item>
+      <item>17831</item>
+      <item>17833</item>
+      <item>17685</item>
+      <item>17897</item>
+      <item>17788</item>
+      <item>17829</item>
+      <item>17752</item>
+      <item>16614</item>
+      <item>17911</item>
+      <item>17703</item>
+      <item>17686</item>
+      <item>17723</item>
+      <item>17217</item>
+      <item>17751</item>
+      <item>17552</item>
+      <item>17794</item>
+      <item>17513</item>
+      <item>17185</item>
+      <item>17731</item>
+      <item>17960</item>
+      <item>17647</item>
+   </string-array>
+
+   <string-array name="fall_2016">
+
+   </string-array>
+</resources>
