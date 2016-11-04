@@ -45,6 +45,81 @@
    </string-array>
 
    <string-array name="fall_2016">
+      <item>18702</item>
+      <item>18166</item>
+      <item>18719</item>
+      <item>18118</item>
+      <item>18682</item>
+      <item>18709</item>
+      <item>18773</item>
+      <item>17269</item>
+      <item>18636</item>
+      <item>18181</item>
+      <item>18177</item>
+      <item>18466</item>
+      <item>17826</item>
+      <item>18698</item>
+      <item>18676</item>
+      <item>18459</item>
+      <item>18695</item>
+      <item>18558</item>
+      <item>18685</item>
+      <item>18716</item>
+      <item>18413</item>
+      <item>18586</item>
+      <item>16986</item>
+      <item>18680</item>
+      <item>18467</item>
+      <item>18167</item>
+      <item>18446</item>
+      <item>18196</item>
+      <item>18168</item>
+      <item>18156</item>
+      <item>18745</item>
+      <item>18557</item>
+      <item>18546</item>
+      <item>18506</item>
+      <item>18588</item>
+      <item>18155</item>
+      <item>18637</item>
+      <item>18180</item>
+      <item>18182</item>
+      <item>18456</item>
+      <item>18057</item>
+      <item>18173</item>
+      <item>18664</item>
+      <item>18135</item>
+      <item>18412</item>
+      <item>18191</item>
+      <item>17986</item>
+      <item>18430</item>
+      <item>18401</item>
+      <item>18733</item>
+      <item>18750</item>
+      <item>18673</item>
+      <item>18694</item>
+      <item>18697</item>
+      <item>18732</item>
+      <item>18727</item>
+      <item>18723</item>
+      <item>18667</item>
+      <item>18729</item>
+      <item>18706</item>
+      <item>18681</item>
+      <item>18634</item>
+      <item>17639</item>
+      <item>18115</item>
+      <item>18759</item>
+      <item>18672</item>
+      <item>18684</item>
+      <item>18708</item>
+      <item>18687</item>
+      <item>18728</item>
+      <item>18779</item>
+   </string-array>
 
+   <string-array name="drawerTitles">
+      <item>Winter 2016</item>
+      <item>Fall 2016</item>
    </string-array>
 </resources>
