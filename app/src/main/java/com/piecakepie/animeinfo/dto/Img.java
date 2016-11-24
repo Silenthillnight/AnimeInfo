@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.model;
+package com.piecakepie.animeinfo.dto;
 
 public class Img {
 

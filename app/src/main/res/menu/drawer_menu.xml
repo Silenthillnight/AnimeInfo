@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+   xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <group android:checkableBehavior="single">
+      <item
+         android:id="@+id/fall_2016"
+         android:icon="@drawable/drawer_point"
+         android:title="@string/menu_fall_2016" />
+      <item
+         android:id="@+id/winter_2016"
+         android:icon="@drawable/drawer_point"
+         android:title="@string/menu_winter_2016" />
+   </group>
+</menu>

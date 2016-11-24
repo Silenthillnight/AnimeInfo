@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.model;
+package com.piecakepie.animeinfo.dto;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

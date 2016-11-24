@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.model;
+package com.piecakepie.animeinfo.dto;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
@@ -24,6 +24,9 @@ public class Anime {
    @ElementList(inline = true)
    private List<Info> info;
 
+   @ElementList(inline = true)
+   private List<Credit> credit;
+
    public int getId() {
       return id;
    }
@@ -40,6 +43,10 @@ public class Anime {
       return info;
    }
 
+   public List<Credit> getCredit() {
+      return credit;
+   }
+
    @Override
    public String toString() {
       return "Anime{" +
@@ -47,6 +54,7 @@ public class Anime {
              ", type='" + type + '\'' +
              ", name='" + name + '\'' +
              ", info=" + info +
+             ", credit=" + credit +
              '}';
    }
 }

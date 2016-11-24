@@ -1,5 +1,7 @@
 package com.piecakepie.animeinfo.model;
 
+import com.piecakepie.animeinfo.dto.Website;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ public class AnimeData {
 
    protected int id;
    protected String title;
+   private String production;
    private String type;
    private List<String> alternateTitles;
    private List<String> genres;
@@ -16,9 +19,9 @@ public class AnimeData {
    private String viewerRating;
    private String plotSummary;
    private String runningTime;
-   private int numberOfEpisodes;
+   private Integer numberOfEpisodes;
    private String vintage;
-   private List<String> websites;
+   private List<Website> websites;
    private String thumbnailUrl;
    private String imageUrl;
 
@@ -36,6 +39,14 @@ public class AnimeData {
 
    public void setTitle(String title) {
       this.title = title;
+   }
+
+   public String getProduction() {
+      return production;
+   }
+
+   public void setProduction(String production) {
+      this.production = production;
    }
 
    public String getType() {
@@ -94,11 +105,11 @@ public class AnimeData {
       this.runningTime = runningTime;
    }
 
-   public int getNumberOfEpisodes() {
+   public Integer getNumberOfEpisodes() {
       return numberOfEpisodes;
    }
 
-   public void setNumberOfEpisodes(int numberOfEpisodes) {
+   public void setNumberOfEpisodes(Integer numberOfEpisodes) {
       this.numberOfEpisodes = numberOfEpisodes;
    }
 
@@ -110,11 +121,11 @@ public class AnimeData {
       this.vintage = vintage;
    }
 
-   public List<String> getWebsites() {
+   public List<Website> getWebsites() {
       return websites;
    }
 
-   public void setWebsites(List<String> websites) {
+   public void setWebsites(List<Website> websites) {
       this.websites = websites;
    }
 
@@ -139,6 +150,7 @@ public class AnimeData {
       return "AnimeData{" +
              "id=" + id +
              ", title='" + title + '\'' +
+             ", production='" + production + '\'' +
              ", type='" + type + '\'' +
              ", alternateTitles=" + alternateTitles +
              ", genres=" + genres +

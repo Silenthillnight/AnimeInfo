@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.model;
+package com.piecakepie.animeinfo.dto;
 
 import com.piecakepie.animeinfo.util.InfoConverter;
 import org.simpleframework.xml.Root;

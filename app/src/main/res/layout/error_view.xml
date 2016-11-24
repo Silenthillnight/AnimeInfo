@@ -11,10 +11,11 @@
       android:padding="16dp"
       android:gravity="center"
       android:layout_gravity="center"
+      android:visibility="gone"
       android:drawableTop="@drawable/ic_cloud_off"
       android:drawablePadding="16dp"
       android:textSize="20sp"
       android:textColor="#656565"
-      android:text="An error has occurred! Click here to retry" />
+      android:text="@string/an_error_has_occurred_pull_down_to_retry" />
 
 </merge>
