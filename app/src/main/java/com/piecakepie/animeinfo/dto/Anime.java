@@ -1,5 +1,6 @@
 package com.piecakepie.animeinfo.dto;
 
+import android.support.annotation.NonNull;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -10,7 +11,7 @@ import java.util.List;
  * Stores the actual information from the ann query.  Since the xml is formatted all janky, won't be strict on it.
  */
 @Root(strict = false)
-public class Anime {
+public class Anime implements Comparable<Anime> {
 
    @Attribute
    private int id;
@@ -56,5 +57,10 @@ public class Anime {
              ", info=" + info +
              ", credit=" + credit +
              '}';
+   }
+
+   @Override
+   public int compareTo(@NonNull Anime anime) {
+      return getName().compareTo(anime.getName());
    }
 }

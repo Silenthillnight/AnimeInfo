@@ -3,6 +3,7 @@ package com.piecakepie.animeinfo.base;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -63,6 +64,13 @@ public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>>
          drawerLayout.closeDrawer(GravityCompat.START);
       } else {
          super.onBackPressed();
+      }
+   }
+
+   public void updateTitle(String title) {
+      ActionBar actionBar = getSupportActionBar();
+      if (actionBar != null) {
+         actionBar.setTitle(title);
       }
    }
 

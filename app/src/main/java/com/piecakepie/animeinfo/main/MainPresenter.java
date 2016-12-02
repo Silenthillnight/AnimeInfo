@@ -11,18 +11,20 @@ import com.piecakepie.animeinfo.model.AnimeData;
 import com.piecakepie.animeinfo.dto.Ann;
 import com.piecakepie.animeinfo.service.AnimeNewsNetworkService;
 import com.piecakepie.animeinfo.util.DataUtil;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
-import java.net.HttpURLConnection;
+import java.util.Collections;
 import java.util.List;
 
 class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
    private SharedPreferences sharedPreferences;
 
-   public MainPresenter() {
+   MainPresenter() {
       super();
       this.sharedPreferences = getContext().getSharedPreferences(DataUtil.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
    }
@@ -37,40 +39,55 @@ class MainPresenter extends BasePresenter<MainContract.View> implements MainCont
       final List<AnimeData> animeData = DataUtil.getAnimeData(sharedPreferences);
 
       if (animeData.isEmpty() || pullToRefresh) {
-         service.getAnimeList(createQueryString(animeIdList)).enqueue(new Callback<Ann>() {
+         service.getAnimeList(createQueryString(animeIdList))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Ann>() {
             @Override
-            public void onResponse(Call<Ann> call, Response<Ann> response) {
-               if (response.code() == HttpURLConnection.HTTP_OK) {
-                  Log.d("AnimeInfo", "Got Data from the server!");
-                  animeData.clear();
-                  final Ann ann = response.body();
-                  for (Anime anime : ann.getAnime()) {
-                     animeData.add(DataUtil.convertAnimeToAnimeData(anime));
-                  }
-
-                  storeAnimeData(animeData);
-                  showContent(animeData);
-               } else {
-                  Log.e("AnimeInfo", "Request error: " + response.message());
-                  if (!animeData.isEmpty()) {
-                     showContent(animeData);
-                  } else {
-                     getView().showError(null);
-                  }
-               }
+            public void call(Ann ann) {
+               animeData.clear();
+               parseData(animeData, ann);
             }
-
+         }, new Action1<Throwable>() {
             @Override
-            public void onFailure(Call<Ann> call, Throwable t) {
-               Log.e("AnimeInfo", "Error while trying to query AnimeNewsNetwork: " + t.getMessage());
-               Log.e("AnimeInfo", "Query: " + call.request().url());
-               getView().showError(t);
+            public void call(Throwable throwable) {
+               Log.e("AnimeInfo", "Error while querying animeNewsNetwork: " + throwable);
+               getView().showError(throwable);
             }
          });
       } else {
          Log.d("AnimeInfo", "Got data from cache!");
          showContent(animeData);
       }
+   }
+
+   private void parseData(final List<AnimeData> animeData, final Ann ann) {
+      final List<Anime> animeList = ann.getAnime();
+      Collections.sort(animeList);
+
+      Observable.from(animeList)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Anime>() {
+                   @Override
+                   public void onCompleted() {
+                      storeAnimeData(animeData);
+                      storeLocalCacheData(animeData);
+                      getView().showContent();
+                   }
+
+                   @Override
+                   public void onError(Throwable e) {
+                      Log.e("AnimeInfo", "Error while trying to parse: " + e);
+                   }
+
+                   @Override
+                   public void onNext(Anime anime) {
+                      Log.d("AnimeInfo", "Parsing anime: " + anime.getName());
+                      AnimeData data = DataUtil.convertAnimeToAnimeData(anime);
+                      animeData.add(data);
+                      getView().addData(data);
+                   }
+                });
    }
 
    /**

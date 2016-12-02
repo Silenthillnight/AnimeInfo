@@ -13,6 +13,7 @@ import com.piecakepie.animeinfo.R;
 import com.piecakepie.animeinfo.model.AnimeData;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnimeDataAdapter extends RecyclerView.Adapter<AnimeDataAdapter.ViewHolder> {
@@ -26,10 +27,20 @@ public class AnimeDataAdapter extends RecyclerView.Adapter<AnimeDataAdapter.View
 
    public AnimeDataAdapter(OnItemClickListener listener) {
       this.listener = listener;
+      animeDataList = new ArrayList<>();
    }
 
    public void setAnimeDataList(List<AnimeData> animeDataList) {
       this.animeDataList = animeDataList;
+   }
+
+   public int addAnimeData(AnimeData animeData) {
+      this.animeDataList.add(animeData);
+      return animeDataList.size() - 1;
+   }
+
+   public void clearAnimeData() {
+      this.animeDataList.clear();
    }
 
    @Override

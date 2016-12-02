@@ -135,16 +135,24 @@ public class MainActivity
    }
 
    public void getData(boolean refresh) {
+      if (refresh) {
+         adapter.clearAnimeData();
+         adapter.notifyDataSetChanged();
+      }
+
       setTitle(DrawerEnum.getTitleByArrayid(arrayId));
-
-      TypedArray animeIdArray = getResources().obtainTypedArray(arrayId);
-
-      loadData(animeIdArray, refresh);
+      loadData(getResources().obtainTypedArray(arrayId), refresh);
    }
 
    public void setData(List<AnimeData> data) {
       adapter.setAnimeDataList(data);
       adapter.notifyDataSetChanged();
+   }
+
+   public void addData(AnimeData data) {
+      int position = adapter.addAnimeData(data);
+      adapter.notifyItemInserted(position);
+      showLoading(false);
    }
 
    public void loadData(TypedArray animeIdArray, boolean pullToRefresh) {
@@ -169,14 +177,14 @@ public class MainActivity
    }
 
    public void setTitle(String title) {
-      getSupportActionBar().setTitle(title);
+      updateTitle(title);
    }
 
    public void showError(Throwable e) {
       contentView.setRefreshing(false);
       showLoading(false);
       errorView.setVisibility(View.VISIBLE);
-      Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+      Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
    }
 
    public void showLoading(boolean show) {
