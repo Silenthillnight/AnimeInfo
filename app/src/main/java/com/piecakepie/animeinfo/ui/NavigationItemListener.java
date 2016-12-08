@@ -45,6 +45,7 @@ public class NavigationItemListener implements NavigationView.OnNavigationItemSe
    private void navigateToListActivity(DrawerEnum drawerEnum) {
       Intent listIntent = new Intent(activity, MainActivity.class);
       listIntent.putExtra(Constants.EXTRA_ARRAY_ID, drawerEnum.getArrayId());
+      listIntent.putExtra(Constants.EXTRA_SEASON_NAME, drawerEnum.getTitle());
       activity.startActivity(listIntent);
    }
 }

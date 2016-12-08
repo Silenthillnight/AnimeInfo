@@ -1,31 +1,28 @@
-package com.piecakepie.animeinfo.model;
+package com.piecakepie.animeinfo.dto.realm;
 
-import com.piecakepie.animeinfo.dto.network.Website;
 
-import java.util.List;
+import com.piecakepie.animeinfo.dto.realm.common.RealmString;
+import io.realm.RealmList;
+import io.realm.RealmObject;
 
-/**
- * Actual data object for populating data on screen
- */
-public class AnimeData {
+public class RealmAnimeData extends RealmObject {
 
-   protected int id;
-   protected String title;
+   private int id;
+   private String title;
    private String production;
    private String type;
-   private List<String> alternateTitles;
-   private List<String> genres;
-   private List<String> themes;
+   private RealmList<RealmString> alternateTitles;
+   private RealmList<RealmString> genres;
+   private RealmList<RealmString> themes;
    private String viewerRating;
    private String plotSummary;
    private String runningTime;
    private Integer numberOfEpisodes;
    private String vintage;
-   private List<Website> websites;
+   private RealmList<RealmWebsite> websites;
    private String thumbnailUrl;
    private String imageUrl;
-   // Some shows are multi-cour and will show up in multiple seasons
-   private List<String> seasons;
+   private RealmList<RealmString> seasons;
 
    public int getId() {
       return id;
@@ -59,27 +56,27 @@ public class AnimeData {
       this.type = type;
    }
 
-   public List<String> getAlternateTitles() {
+   public RealmList<RealmString> getAlternateTitles() {
       return alternateTitles;
    }
 
-   public void setAlternateTitles(List<String> alternateTitles) {
+   public void setAlternateTitles(RealmList<RealmString> alternateTitles) {
       this.alternateTitles = alternateTitles;
    }
 
-   public List<String> getGenres() {
+   public RealmList<RealmString> getGenres() {
       return genres;
    }
 
-   public void setGenres(List<String> genres) {
+   public void setGenres(RealmList<RealmString> genres) {
       this.genres = genres;
    }
 
-   public List<String> getThemes() {
+   public RealmList<RealmString> getThemes() {
       return themes;
    }
 
-   public void setThemes(List<String> themes) {
+   public void setThemes(RealmList<RealmString> themes) {
       this.themes = themes;
    }
 
@@ -123,11 +120,11 @@ public class AnimeData {
       this.vintage = vintage;
    }
 
-   public List<Website> getWebsites() {
+   public RealmList<RealmWebsite> getWebsites() {
       return websites;
    }
 
-   public void setWebsites(List<Website> websites) {
+   public void setWebsites(RealmList<RealmWebsite> websites) {
       this.websites = websites;
    }
 
@@ -147,41 +144,11 @@ public class AnimeData {
       this.imageUrl = imageUrl;
    }
 
-   public List<String> getSeasons() {
+   public RealmList<RealmString> getSeasons() {
       return seasons;
    }
 
-   public void setSeasons(List<String> seasons) {
+   public void setSeasons(RealmList<RealmString> seasons) {
       this.seasons = seasons;
-   }
-
-   public boolean addSeason(String season) {
-      if (this.seasons != null) {
-         this.seasons.add(season);
-         return true;
-      }
-
-      return false;
-   }
-
-   @Override
-   public String toString() {
-      return "AnimeData{" +
-             "id=" + id +
-             ", title='" + title + '\'' +
-             ", production='" + production + '\'' +
-             ", type='" + type + '\'' +
-             ", alternateTitles=" + alternateTitles +
-             ", genres=" + genres +
-             ", themes=" + themes +
-             ", viewerRating='" + viewerRating + '\'' +
-             ", plotSummary='" + plotSummary + '\'' +
-             ", runningTime='" + runningTime + '\'' +
-             ", numberOfEpisodes=" + numberOfEpisodes +
-             ", vintage='" + vintage + '\'' +
-             ", websites=" + websites +
-             ", thumbnailUrl='" + thumbnailUrl + '\'' +
-             ", imageUrl='" + imageUrl + '\'' +
-             '}';
    }
 }

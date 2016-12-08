@@ -1,7 +1,7 @@
 package com.piecakepie.animeinfo.service;
 
 
-import com.piecakepie.animeinfo.dto.Ann;
+import com.piecakepie.animeinfo.dto.network.Ann;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

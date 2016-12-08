@@ -1,7 +1,7 @@
 package com.piecakepie.animeinfo.util;
 
-import com.piecakepie.animeinfo.dto.Img;
-import com.piecakepie.animeinfo.dto.Info;
+import com.piecakepie.animeinfo.dto.network.Img;
+import com.piecakepie.animeinfo.dto.network.Info;
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;

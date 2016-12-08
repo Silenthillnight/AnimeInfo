@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.dto;
+package com.piecakepie.animeinfo.dto.network;
 
 
 public class Website {

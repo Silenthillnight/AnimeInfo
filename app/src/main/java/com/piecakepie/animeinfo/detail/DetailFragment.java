@@ -16,7 +16,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import com.piecakepie.animeinfo.R;
 import com.piecakepie.animeinfo.base.BaseFragment;
-import com.piecakepie.animeinfo.dto.Website;
+import com.piecakepie.animeinfo.dto.network.Website;
 import com.piecakepie.animeinfo.model.AnimeData;
 import com.piecakepie.animeinfo.util.Constants;
 import com.piecakepie.animeinfo.util.DetailEnum;

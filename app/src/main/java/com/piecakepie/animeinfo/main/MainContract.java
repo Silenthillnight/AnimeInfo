@@ -15,6 +15,6 @@ interface MainContract {
    }
 
    interface Presenter extends MvpPresenter<View> {
-      void pullData(List<String> animeIdList, final boolean pullToRefresh);
+      void pullData(List<String> animeIdList,final String seasonName, final boolean pullToRefresh);
    }
 }

@@ -5,12 +5,12 @@ import android.util.Log;
 import android.util.SparseArray;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.piecakepie.animeinfo.dto.Anime;
+import com.piecakepie.animeinfo.dto.network.Anime;
 import com.piecakepie.animeinfo.model.AnimeData;
-import com.piecakepie.animeinfo.dto.Credit;
-import com.piecakepie.animeinfo.dto.Img;
-import com.piecakepie.animeinfo.dto.Info;
-import com.piecakepie.animeinfo.dto.Website;
+import com.piecakepie.animeinfo.dto.network.Credit;
+import com.piecakepie.animeinfo.dto.network.Img;
+import com.piecakepie.animeinfo.dto.network.Info;
+import com.piecakepie.animeinfo.dto.network.Website;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -31,16 +31,20 @@ public class DataUtil {
    }
 
    /**
-    * Converts the anime DTO to a usable object for displaying data
+    * Converts the anime network DTO to a view object for displaying data
     *
     * @param anime         DTO object from source
     * @return animeData    Object used for displaying information
     */
-   public static AnimeData convertAnimeToAnimeData(Anime anime) {
+   public static AnimeData convertToAnimeData(Anime anime, String seasonName) {
       final AnimeData animeData = new AnimeData();
       animeData.setId(anime.getId());
       animeData.setTitle(anime.getName());
       animeData.setType(anime.getType());
+
+      // Add season for future db query
+      animeData.setSeasons(new ArrayList<String>());
+      animeData.addSeason(seasonName);
 
       // Every anime should have a listing to the ann site
       final List<Website> websites = new ArrayList<>();

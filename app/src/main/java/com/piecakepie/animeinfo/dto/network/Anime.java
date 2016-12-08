@@ -1,4 +1,4 @@
-package com.piecakepie.animeinfo.dto;
+package com.piecakepie.animeinfo.dto.network;
 
 import android.support.annotation.NonNull;
 import org.simpleframework.xml.Attribute;

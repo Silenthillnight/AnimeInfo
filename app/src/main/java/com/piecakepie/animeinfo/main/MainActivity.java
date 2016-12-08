@@ -46,6 +46,7 @@ public class MainActivity
    AnimeDataAdapter adapter;
 
    int arrayId;
+   String seasonName;
 
    Fragment currentFragment;
 
@@ -66,7 +67,7 @@ public class MainActivity
 
    @Override
    public void onRefresh() {
-      getData(true);
+      getData(true, seasonName);
    }
 
    @Override
@@ -114,34 +115,38 @@ public class MainActivity
       SharedPreferences sharedPreferences = getSharedPreferences(DataUtil.SHARED_PREFERENCES_KEY, MODE_PRIVATE);
 
       arrayId = sharedPreferences.getInt(Constants.CURRENT_ARRAY_ID, 0);
+      seasonName = sharedPreferences.getString(Constants.CURRENT_SEASON_NAME, null);
 
       if (arrayId == 0) {
          arrayId = DrawerEnum.fall_2016.getArrayId();
+         seasonName = DrawerEnum.fall_2016.getTitle();
          refresh = true;
       }
 
       if (intent != null) {
          final int intentArrayId = intent.getIntExtra(Constants.EXTRA_ARRAY_ID, 0);
+         final String intentSeasonName = intent.getStringExtra(Constants.EXTRA_SEASON_NAME);
          Log.d("AnimeInfo", "Current arrayId: " + arrayId + ", new arrayId: " + intentArrayId);
          if (intentArrayId != 0 && arrayId != intentArrayId) {
             Log.d("AnimeInfo", "New array found!  Refreshing data!");
             arrayId = intentArrayId;
+            seasonName = intentSeasonName;
             refresh = true;
          }
       }
 
       sharedPreferences.edit().putInt(Constants.CURRENT_ARRAY_ID, arrayId).apply();
-      getData(refresh);
+      getData(refresh, seasonName);
    }
 
-   public void getData(boolean refresh) {
+   public void getData(boolean refresh, String seasonName) {
       if (refresh) {
          adapter.clearAnimeData();
          adapter.notifyDataSetChanged();
       }
 
-      setTitle(DrawerEnum.getTitleByArrayid(arrayId));
-      loadData(getResources().obtainTypedArray(arrayId), refresh);
+      setTitle(seasonName);
+      loadData(getResources().obtainTypedArray(arrayId), seasonName, refresh);
    }
 
    public void setData(List<AnimeData> data) {
@@ -155,7 +160,7 @@ public class MainActivity
       showLoading(false);
    }
 
-   public void loadData(TypedArray animeIdArray, boolean pullToRefresh) {
+   public void loadData(TypedArray animeIdArray, String seasonName, boolean pullToRefresh) {
       Log.d("AnimeInfo", "Load Data in Activity");
 
       final List<String> animeIdList = new ArrayList<>();
@@ -167,7 +172,7 @@ public class MainActivity
       animeIdArray.recycle();
 
       showLoading(true);
-      presenter.pullData(animeIdList, pullToRefresh);
+      presenter.pullData(animeIdList, seasonName, pullToRefresh);
    }
 
    public void showContent() {
