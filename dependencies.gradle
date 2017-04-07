@@ -1,0 +1,44 @@
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:recyclerview-v7:${android_support_version}"
+    compile "com.android.support:appcompat-v7:${android_support_version}"
+    compile "com.android.support:design:${android_support_version}"
+    testCompile 'junit:junit:4.12'
+
+    // Mosby MVP 2.0
+    compile "com.hannesdorfmann.mosby:mvp:${mosby_version}"
+    compile "com.hannesdorfmann.mosby:viewstate:${mosby_version}"
+
+    // Butterknife
+    compile "com.jakewharton:butterknife:${butterknife_version}"
+    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    compile ("com.squareup.retrofit2:converter-simplexml:${retrofit_version}", {
+        exclude module: 'xpp3'
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+    })
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    // Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile'com.google.code.gson:gson:2.7'
+
+    // Dagger
+    compile "com.google.dagger:dagger:${dagger_version}"
+    apt "com.google.dagger:dagger-compiler:${dagger_version}"
+
+    //RxJava & RxAndroid
+    compile "io.reactivex.rxjava2:rxandroid:${rxjava_version}"
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile "io.reactivex.rxjava2:rxjava:${rxjava_version}"
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    compile 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0-RC1'
+}

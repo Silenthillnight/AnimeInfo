@@ -1,31 +1,47 @@
 package com.piecakepie.animeinfo.manager;
 
+import android.text.TextUtils;
 
-import okhttp3.OkHttpClient;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.convert.AnnotationStrategy;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.strategy.Strategy;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+import com.piecakepie.animeinfo.dto.network.Anime;
+import com.piecakepie.animeinfo.dto.network.Ann;
+import com.piecakepie.animeinfo.model.AnimeData;
+import com.piecakepie.animeinfo.service.AnimeNewsNetworkService;
+import com.piecakepie.animeinfo.util.DataUtil;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class AnimeNewsNetworkManager {
 
-   private final static String BASE_URL = "http://cdn.animenewsnetwork.com/encyclopedia/";
+   private AnimeNewsNetworkService animeNewsNetworkService;
 
-   private static Strategy strategy = new AnnotationStrategy();
-   private static Serializer serializer = new Persister(strategy);
-   private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+   public AnimeNewsNetworkManager(AnimeNewsNetworkService animeNewsNetworkService) {
+      this.animeNewsNetworkService = animeNewsNetworkService;
+   }
 
-   private static Retrofit.Builder builder =
-      new Retrofit.Builder().baseUrl(BASE_URL)
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .addConverterFactory(SimpleXmlConverterFactory.create(serializer));
+   public Observable<AnimeData> getAnimeData(final String seasonName, final List<String> animeIdList) {
+      return animeNewsNetworkService
+            .getAnimeList(createQueryString(animeIdList))
+            .observeOn(Schedulers.io())
+            .flatMapObservable(new Function<Ann, ObservableSource<Anime>>() {
+               @Override
+               public ObservableSource<Anime> apply(Ann ann) throws Exception {
+                  return Observable.fromIterable(ann.getAnime());
+               }
+            })
+            .observeOn(Schedulers.computation())
+            .map(anime -> DataUtil.convertToAnimeData(anime, seasonName));
+   }
 
-   public static <T> T createService(Class<T> serviceClass) {
-      Retrofit retrofit = builder.client(httpClient.build()).build();
-
-      return retrofit.create(serviceClass);
+   /**
+    * Concatenates anime ids with a '/' in between each id because ANN has a terrible query system
+    * @return  concatenated query string
+    */
+   private String createQueryString(List<String> animeIdList) {
+      return TextUtils.join("/", animeIdList);
    }
 }

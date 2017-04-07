@@ -1,5 +1,7 @@
 package com.piecakepie.animeinfo.model;
 
+import android.support.annotation.NonNull;
+
 import com.piecakepie.animeinfo.dto.network.Website;
 
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Actual data object for populating data on screen
  */
-public class AnimeData {
+public class AnimeData implements Comparable<AnimeData> {
 
    protected int id;
    protected String title;
@@ -183,5 +185,10 @@ public class AnimeData {
              ", thumbnailUrl='" + thumbnailUrl + '\'' +
              ", imageUrl='" + imageUrl + '\'' +
              '}';
+   }
+
+   @Override
+   public int compareTo(@NonNull AnimeData anime) {
+      return getTitle().compareTo(anime.getTitle());
    }
 }

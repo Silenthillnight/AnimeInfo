@@ -3,6 +3,7 @@ package com.piecakepie.animeinfo.util;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.util.SparseArray;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.piecakepie.animeinfo.dto.network.Anime;

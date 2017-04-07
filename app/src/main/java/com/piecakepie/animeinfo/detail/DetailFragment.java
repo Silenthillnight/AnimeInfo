@@ -2,6 +2,7 @@ package com.piecakepie.animeinfo.detail;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -69,6 +70,7 @@ public class DetailFragment
       return R.layout.fragment_detail;
    }
 
+   @NonNull
    @Override
    public DetailContract.Presenter createPresenter() {
       return new DetailPresenter();

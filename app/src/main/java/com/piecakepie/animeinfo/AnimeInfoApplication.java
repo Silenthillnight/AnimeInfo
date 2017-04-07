@@ -1,20 +1,25 @@
 package com.piecakepie.animeinfo;
 
 import android.app.Application;
-import android.content.Context;
+
+import com.piecakepie.animeinfo.dagger.component.AppComponent;
+import com.piecakepie.animeinfo.dagger.component.DaggerAppComponent;
+import com.piecakepie.animeinfo.dagger.module.AppModule;
 
 
 public class AnimeInfoApplication extends Application {
 
-   private static Context context;
+   private AppComponent appComponent;
 
    @Override
    public void onCreate() {
       super.onCreate();
-      context = getApplicationContext();
+
+      appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+      //appComponent.inject(this);
    }
 
-   public static Context getAppContext() {
-      return context;
+   public AppComponent getAppComponent() {
+      return appComponent;
    }
 }

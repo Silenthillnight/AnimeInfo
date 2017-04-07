@@ -11,7 +11,7 @@ import java.util.List;
  * Stores the actual information from the ann query.  Since the xml is formatted all janky, won't be strict on it.
  */
 @Root(strict = false)
-public class Anime implements Comparable<Anime> {
+public class Anime {
 
    @Attribute
    private int id;
@@ -57,10 +57,5 @@ public class Anime implements Comparable<Anime> {
              ", info=" + info +
              ", credit=" + credit +
              '}';
-   }
-
-   @Override
-   public int compareTo(@NonNull Anime anime) {
-      return getName().compareTo(anime.getName());
    }
 }

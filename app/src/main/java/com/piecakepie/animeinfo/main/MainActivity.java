@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.piecakepie.animeinfo.R;
 import com.piecakepie.animeinfo.base.BaseActivity;
 import com.piecakepie.animeinfo.detail.DetailFragment;
@@ -26,6 +27,7 @@ import com.piecakepie.animeinfo.util.DrawerEnum;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity
    extends BaseActivity<MainContract.View, MainContract.Presenter>
@@ -55,14 +57,13 @@ public class MainActivity
       super.onCreate(savedInstanceState);
       addChildView(R.layout.activity_list);
       ButterKnife.bind(this);
-
       init();
    }
 
    @NonNull
    @Override
    public MainContract.Presenter createPresenter() {
-      return new MainPresenter();
+      return getComponent().mainPresenter();
    }
 
    @Override
@@ -87,21 +88,18 @@ public class MainActivity
       contentView.setOnRefreshListener(this);
 
       // Initialize adapter
-      adapter = new AnimeDataAdapter(new AnimeDataAdapter.OnItemClickListener() {
-         @Override
-         public void onItemClick(AnimeDataAdapter.ViewHolder holder, AnimeData item) {
-            currentFragment = new DetailFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt(Constants.EXTRA_ANIME_ID, item.getId());
-            currentFragment.setArguments(bundle);
-            currentFragment.setEnterTransition(new Fade());
-            currentFragment.setExitTransition(new Fade());
+      adapter = new AnimeDataAdapter((holder, item) -> {
+         currentFragment = new DetailFragment();
+         Bundle bundle = new Bundle();
+         bundle.putInt(Constants.EXTRA_ANIME_ID, item.getId());
+         currentFragment.setArguments(bundle);
+         currentFragment.setEnterTransition(new Fade());
+         currentFragment.setExitTransition(new Fade());
 
-            getSupportFragmentManager().beginTransaction()
-                                       .add(R.id.contentMain, currentFragment)
-                                       .addToBackStack(null)
-                                       .commit();
-         }
+         getSupportFragmentManager().beginTransaction()
+                                    .add(R.id.contentMain, currentFragment)
+                                    .addToBackStack(null)
+                                    .commit();
       });
 
       recyclerView.setLayoutManager(new LinearLayoutManager(this));

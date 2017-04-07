@@ -6,7 +6,7 @@ import com.piecakepie.animeinfo.model.AnimeData;
 
 import java.util.List;
 
-interface MainContract {
+public interface MainContract {
    interface View extends BaseView {
       void showContent();
       void setData(List<AnimeData> animeData);

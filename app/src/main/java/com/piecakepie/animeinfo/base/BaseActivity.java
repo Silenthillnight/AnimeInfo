@@ -12,7 +12,11 @@ import android.widget.FrameLayout;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.MvpView;
+import com.piecakepie.animeinfo.AnimeInfoApplication;
 import com.piecakepie.animeinfo.R;
+import com.piecakepie.animeinfo.dagger.component.ActivityComponent;
+import com.piecakepie.animeinfo.dagger.component.AppComponent;
+import com.piecakepie.animeinfo.dagger.component.DaggerActivityComponent;
 import com.piecakepie.animeinfo.ui.NavigationItemListener;
 
 public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>> extends MvpActivity<V, P> {
@@ -21,9 +25,11 @@ public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>>
    protected Toolbar toolbar;
    protected NavigationView navigationView;
    protected FrameLayout contentView;
+   private ActivityComponent component;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
+      initializeComponent();
       super.onCreate(savedInstanceState);
       mvpDelegate.onCreate(savedInstanceState);
       setContentView(R.layout.activity_base);
@@ -37,6 +43,16 @@ public abstract class BaseActivity<V extends MvpView, P extends MvpPresenter<V>>
       toggle.syncState();
 
       navigationView.setNavigationItemSelectedListener(new NavigationItemListener(this, drawerLayout));
+   }
+
+   protected void initializeComponent() {
+      final AppComponent appComponent =
+            ((AnimeInfoApplication) getApplicationContext()).getAppComponent();
+      component = DaggerActivityComponent.builder().appComponent(appComponent).build();
+   }
+
+   protected ActivityComponent getComponent() {
+      return component;
    }
 
    @Override
