@@ -10,8 +10,8 @@ public interface MainContract {
    interface View extends BaseView {
       void showContent();
       void setData(List<AnimeData> animeData);
-      void addData(AnimeData animeData);
-      void showError(Throwable t);
+//      void addData(AnimeData animeData);
+//      void showError(Throwable t);
    }
 
    interface Presenter extends MvpPresenter<View> {

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:orientation="vertical"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:background="@android:color/white">
+
+   <RelativeLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/white"
+      android:padding="8dp">
+
+      <ImageView
+         android:id="@+id/anime_image"
+         android:layout_width="75dp"
+         android:layout_height="75dp"
+         android:transitionName="shared_image"
+         tools:src="@mipmap/ic_taiga" />
+
+      <TextView
+         android:id="@+id/anime_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toEndOf="@id/anime_image"
+         android:layout_toStartOf="@+id/anime_switch"
+         android:paddingStart="20dp"
+         android:transitionName="shared_title"
+         android:textSize="20sp"
+         android:textColor="@android:color/black"
+         tools:text="Title" />
+
+      <TextView
+         android:id="@+id/anime_subtitle"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toEndOf="@id/anime_image"
+         android:layout_below="@id/anime_title"
+         android:paddingStart="20dp"
+         android:paddingTop="4dp"
+         android:paddingBottom="4dp"
+         android:textSize="16sp"
+         android:textColor="@android:color/holo_red_dark"
+         tools:text="Subtitle" />
+
+      <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_toEndOf="@id/anime_image"
+         android:layout_below="@id/anime_subtitle">
+
+         <TextView
+            android:id="@+id/anime_dropdown_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="More info" />
+
+         <ImageView
+            android:id="@+id/anime_dropdown_image"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/expand_arrow" />
+
+
+      </LinearLayout>
+
+      <Switch
+         android:id="@id/anime_switch"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentEnd="true"
+         android:textColorHighlight="@android:color/holo_red_dark" />
+
+   </RelativeLayout>
+
+   <include
+      layout="@layout/view_expanded_detail"
+      android:id="@+id/anime_expanded_detail"
+      android:visibility="gone" />
+
+</LinearLayout>

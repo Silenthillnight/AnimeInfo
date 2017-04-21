@@ -39,6 +39,9 @@ public class DataUtil {
     */
    public static AnimeData convertToAnimeData(Anime anime, String seasonName) {
       final AnimeData animeData = new AnimeData();
+      // TEMP
+      animeData.setSelected(false);
+
       animeData.setId(anime.getId());
       animeData.setTitle(anime.getName());
       animeData.setType(anime.getType());

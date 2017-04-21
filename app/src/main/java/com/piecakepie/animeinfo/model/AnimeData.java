@@ -29,6 +29,28 @@ public class AnimeData implements Comparable<AnimeData> {
    // Some shows are multi-cour and will show up in multiple seasons
    private List<String> seasons;
 
+   // TEMP
+   private boolean selected;
+   private boolean showDetail;
+
+   public boolean isSelected() {
+      return selected;
+   }
+
+   public void setSelected(boolean selected) {
+      this.selected = selected;
+   }
+
+   public boolean isShowDetail() {
+      return showDetail;
+   }
+
+   public void setShowDetail(boolean showDetail) {
+      this.showDetail = showDetail;
+   }
+
+   // END TEMP
+
    public int getId() {
       return id;
    }

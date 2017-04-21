@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:paddingTop="16dp"
+   android:paddingBottom="8dp"
+   android:paddingStart="16dp"
+   android:paddingEnd="8dp">
+
+   <TextView
+      android:id="@+id/summary_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:textSize="24sp"
+      android:textStyle="bold"
+      android:textColor="@android:color/black"
+      tools:text="All Messaging Apps"/>
+
+   <TextView
+      android:id="@+id/summary_subtitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/summary_title"
+      android:layout_marginStart="8dp"
+      android:textSize="16sp"
+      tools:text="Over 200 websites and apps" />
+
+   <TextView
+      android:id="@+id/summary_status"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/summary_subtitle"
+      android:layout_marginStart="8dp"
+      android:paddingBottom="16dp"
+      android:textColor="@android:color/holo_red_dark"
+      android:textSize="16sp"
+      tools:text="Blocked" />
+
+   <TextView
+      android:id="@+id/summary_more_info_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/summary_status"
+      android:layout_marginStart="8dp"
+      android:paddingBottom="40dp"
+      android:textColor="@android:color/holo_blue_light"
+      android:textSize="16sp"
+      android:text="More info" />
+
+   <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/summary_more_info_button"
+      android:textStyle="bold"
+      android:textColor="@android:color/black"
+      android:textSize="16sp"
+      android:text="Customize" />
+
+   <Switch
+      android:id="@+id/summary_switch"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

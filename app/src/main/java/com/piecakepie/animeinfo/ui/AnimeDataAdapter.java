@@ -45,7 +45,7 @@ public class AnimeDataAdapter extends RecyclerView.Adapter<AnimeDataAdapter.View
 
    @Override
    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      View animeDataView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_item, parent, false);
+      View animeDataView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_anime, parent, false);
       return new ViewHolder(animeDataView);
    }
 
@@ -63,10 +63,10 @@ public class AnimeDataAdapter extends RecyclerView.Adapter<AnimeDataAdapter.View
 
       final Drawable defaultImage;
 
-      @BindView(R.id.row_image)
+      @BindView(R.id.anime_image)
       ImageView thumbnail;
 
-      @BindView(R.id.row_text)
+      @BindView(R.id.anime_title)
       TextView title;
 
       ViewHolder(View itemView) {
