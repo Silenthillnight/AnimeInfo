@@ -14,7 +14,7 @@ dependencies {
 
     // Butterknife
     compile "com.jakewharton:butterknife:${butterknife_version}"
-    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife_version}"
 
     // Retrofit
     compile "com.squareup.retrofit2:retrofit:${retrofit_version}"
@@ -32,7 +32,7 @@ dependencies {
 
     // Dagger
     compile "com.google.dagger:dagger:${dagger_version}"
-    apt "com.google.dagger:dagger-compiler:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
 
     //RxJava & RxAndroid
     compile "io.reactivex.rxjava2:rxandroid:${rxjava_version}"
